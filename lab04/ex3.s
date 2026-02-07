@@ -1,6 +1,6 @@
 .data
 n: .word 2
-exp: .word 10
+exp: .word 11
 
 .text
 main:
@@ -32,6 +32,8 @@ main:
 #     where ^ is the exponent operator, not XOR
 ex3:
     # Note: Add code BELOW without altering existing lines.
+    addi sp sp -4
+    sw ra 0(sp)
 
     # return 1 if a1 == 0
     beq a1 x0 ex3_zero_case
@@ -48,9 +50,11 @@ ex3:
     j ex3_end
 
     # Note: Add code ABOVE without altering existing lines.
-
 ex3_zero_case:
     li a0 1
 
 ex3_end:
+    lw ra 0(sp)
+    addi sp sp 4
+    
     jr ra
